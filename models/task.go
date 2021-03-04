@@ -15,6 +15,10 @@ type Task struct {
 	StatusID  uint      `json:"-"`
 	Status    Status    `json:"status" gorm:"foreignKey:StatusID"`
 }
+type User struct {
+	UserID uint   `json:"id"`
+	Email  string `json:"email"`
+}
 type Project struct {
 	ProjectID    uint   `json:"project_id" gorm:"primaryKey"`
 	ProjectTitle string `json:"project_title"`

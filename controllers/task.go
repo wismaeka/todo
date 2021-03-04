@@ -10,12 +10,12 @@ import (
 )
 
 // CreateTask godoc
-// @Summary Create Task
+// @Summary Create task
 // @Description Add by JSON Task
 // @Tags task
 // @Accept  json
 // @Produce  json
-// @Param task body models.Task true "Create Task"
+// @Param task body models.Task true "Add Task"
 // @success 200 {object} models.Task
 // @Router /task [post]
 

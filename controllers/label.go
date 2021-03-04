@@ -14,7 +14,7 @@ import (
 // @Tags label
 // @Accept  json
 // @Produce  json
-// @Param label body models.Label true "Create Label"
+// @Param label body models.Label true "Add Label"
 // @success 200 {object} models.Label
 // @Router /label [post]
 

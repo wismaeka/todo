@@ -14,7 +14,7 @@ import (
 // @Tags project
 // @Accept  json
 // @Produce  json
-// @Param project body models.Project true "Create Project"
+// @Param project body models.Project true "Add Project"
 // @success 200 {object} models.Project
 // @Router /project [post]
 
