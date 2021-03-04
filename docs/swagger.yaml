@@ -36,6 +36,17 @@ definitions:
         type: string
       title:
         type: string
+      user:
+        $ref: '#/definitions/models.User'
+    type: object
+  models.User:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
     type: object
 host: localhost:8080
 info:
@@ -50,6 +61,50 @@ info:
   title: Todo API
   version: "1.0"
 paths:
+  /label:
+    post:
+      consumes:
+      - application/json
+      description: Add by JSON Label
+      parameters:
+      - description: Add Label
+        in: body
+        name: label
+        required: true
+        schema:
+          $ref: '#/definitions/models.Label'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Label'
+      summary: Create Label data
+      tags:
+      - label
+  /project:
+    post:
+      consumes:
+      - application/json
+      description: Add by JSON Project
+      parameters:
+      - description: Add Project
+        in: body
+        name: project
+        required: true
+        schema:
+          $ref: '#/definitions/models.Project'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Project'
+      summary: Create Project data
+      tags:
+      - project
   /task:
     get:
       consumes:
@@ -64,6 +119,27 @@ paths:
       summary: Show a list of Tasks
       tags:
       - tasks
+    post:
+      consumes:
+      - application/json
+      description: Add by JSON Task
+      parameters:
+      - description: Add Task
+        in: body
+        name: task
+        required: true
+        schema:
+          $ref: '#/definitions/models.Task'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Task'
+      summary: Create task
+      tags:
+      - task
   /task/{task_id}:
     delete:
       consumes:

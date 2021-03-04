@@ -31,11 +31,11 @@ func main() {
 	{
 		v1.GET("/task", controllers.GetAllTask)
 		v1.GET("/task/:task_id", controllers.GetTaskById)
-		v1.PUT("/task/:task_id", controllers.UpdateTask)
-		v1.DELETE("/task/:task_id", controllers.DeleteTask)
 		v1.POST("/task", controllers.CreateTask)
 		v1.POST("/project", controllers.CreateProject)
 		v1.POST("/label", controllers.CreateLabel)
+		v1.PUT("/task/:task_id", controllers.UpdateTask)
+		v1.DELETE("/task/:task_id", controllers.DeleteTask)
 	}
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
