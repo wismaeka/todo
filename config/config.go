@@ -27,7 +27,7 @@ func ConnectDB() {
 		log.Fatal(err.Error())
 	}
 
-	db.AutoMigrate(&models.Project{}, &models.Label{}, &models.Task{})
+	db.AutoMigrate(&models.Project{}, &models.Label{}, &models.Task{}, &models.Status{})
 	fmt.Println("DB COnnected")
 
 	DB = db
