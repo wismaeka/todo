@@ -1,0 +1,135 @@
+basePath: /api/v1
+definitions:
+  models.Label:
+    properties:
+      label_id:
+        type: integer
+      label_title:
+        type: string
+    type: object
+  models.Project:
+    properties:
+      project_id:
+        type: integer
+      project_title:
+        type: string
+    type: object
+  models.Status:
+    properties:
+      status_id:
+        type: integer
+      status_title:
+        type: string
+    type: object
+  models.Task:
+    properties:
+      label:
+        $ref: '#/definitions/models.Label'
+        description: gorm:"type:text[]"`
+      project:
+        $ref: '#/definitions/models.Project'
+      status:
+        $ref: '#/definitions/models.Status'
+      task_id:
+        type: integer
+      time:
+        type: string
+      title:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: wisma@gmail.com
+    name: Todo.Support
+  description: This is a basic API Todo of which has proprerties of Project, Label,
+    Status, and Title using Gin and Gorm.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  title: Todo API
+  version: "1.0"
+paths:
+  /task:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Task'
+      summary: Show a list of Tasks
+      tags:
+      - tasks
+  /task/{task_id}:
+    delete:
+      consumes:
+      - application/json
+      operationId: get-string-by-int
+      parameters:
+      - description: Task ID
+        in: path
+        name: task_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Task'
+      summary: Delete task including project, label, status by task id
+      tags:
+      - task
+    get:
+      consumes:
+      - application/json
+      operationId: get-string-by-int
+      parameters:
+      - description: Task ID
+        in: path
+        name: task_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Task'
+      summary: Show task detail including project, label, status based on Task Id
+      tags:
+      - tasks
+  /task_id/{task_id}:
+    put:
+      consumes:
+      - application/json
+      description: Update by JSON Task
+      parameters:
+      - description: Task Id
+        in: path
+        name: task_id
+        required: true
+        type: integer
+      - description: Update Task
+        in: body
+        name: task
+        required: true
+        schema:
+          $ref: '#/definitions/models.Task'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Task'
+      summary: Update task or items by TaskId
+      tags:
+      - task
+swagger: "2.0"

@@ -1,0 +1,204 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a basic API Todo of which has proprerties of Project, Label, Status, and Title using Gin and Gorm.",
+        "title": "Todo API",
+        "contact": {
+            "name": "Todo.Support",
+            "email": "wisma@gmail.com"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/api/v1",
+    "paths": {
+        "/task": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "tasks"
+                ],
+                "summary": "Show a list of Tasks",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Task"
+                        }
+                    }
+                }
+            }
+        },
+        "/task/{task_id}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "tasks"
+                ],
+                "summary": "Show task detail including project, label, status based on Task Id",
+                "operationId": "get-string-by-int",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Task ID",
+                        "name": "task_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Task"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "task"
+                ],
+                "summary": "Delete task including project, label, status by task id",
+                "operationId": "get-string-by-int",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Task ID",
+                        "name": "task_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Task"
+                        }
+                    }
+                }
+            }
+        },
+        "/task_id/{task_id}": {
+            "put": {
+                "description": "Update by JSON Task",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "task"
+                ],
+                "summary": "Update task or items by TaskId",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Task Id",
+                        "name": "task_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Update Task",
+                        "name": "task",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Task"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Task"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Label": {
+            "type": "object",
+            "properties": {
+                "label_id": {
+                    "type": "integer"
+                },
+                "label_title": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Project": {
+            "type": "object",
+            "properties": {
+                "project_id": {
+                    "type": "integer"
+                },
+                "project_title": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Status": {
+            "type": "object",
+            "properties": {
+                "status_id": {
+                    "type": "integer"
+                },
+                "status_title": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Task": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "description": "gorm:\"type:text[]\"`",
+                    "$ref": "#/definitions/models.Label"
+                },
+                "project": {
+                    "$ref": "#/definitions/models.Project"
+                },
+                "status": {
+                    "$ref": "#/definitions/models.Status"
+                },
+                "task_id": {
+                    "type": "integer"
+                },
+                "time": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
